@@ -1,0 +1,16 @@
+// example input
+
+3 // number of stations
+A // station name
+B // station name
+C // station name
+
+2 // number of edges
+E1,A,B,30 // route from A to B that takes 30 minutes
+E2,B,C,10 // route from B to C that takes 10 minutes
+
+1 // number of deliveries to be performed
+K1,5,A,C // package K1 with weight 5 located currently at station A that must be delivered to station C
+
+1 // number of trains
+Q1,6,B // train Q1 with capacity 6 located at station B
