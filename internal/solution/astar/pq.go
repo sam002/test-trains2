@@ -1,12 +1,19 @@
 package astar
 
-import "trains2/internal/trains2"
-
 type Item struct {
-	value    trains2.Move
+	n        Node
 	priority int // The priority of the item in the queue.
 	// The index is needed by update and is maintained by the heap.Interface methods.
 	index int // The index of the item in the heap.
+}
+
+func NewItem(n Node) *Item {
+	priority := n.gm.Game.summaryDistance() * n.gm.Game.time
+	return &Item{n: n, priority: priority}
+}
+
+func (i *Item) GetNode() Node {
+	return i.n
 }
 
 // A PQMovies implements heap.Interface and holds Items.
@@ -15,8 +22,8 @@ type PQMovies []*Item
 func (pq PQMovies) Len() int { return len(pq) }
 
 func (pq PQMovies) Less(i, j int) bool {
-	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-	return pq[i].priority > pq[j].priority
+	// MinPQ
+	return pq[i].priority < pq[j].priority
 }
 
 func (pq PQMovies) Swap(i, j int) {

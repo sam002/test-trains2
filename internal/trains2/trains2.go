@@ -18,10 +18,9 @@ func (e Edge) String() string {
 }
 
 type Train struct {
-	TrainName       string
-	CapacityInKg    int
-	StartingNode    Station
-	CurrentPackages map[string]Package
+	TrainName    string
+	CapacityInKg int
+	StartingNode Station
 }
 
 //func (t Train) String() string {
@@ -31,24 +30,12 @@ type Train struct {
 type Package struct {
 	PackageName     string
 	WeightInKg      int
-	StartingNode    *Station
-	DestinationNode *Station
-	Train           *Train
+	StartingNode    Station
+	DestinationNode Station
 }
 
 func (p *Package) String() string {
-	return fmt.Sprint(p.PackageName)
-}
-
-func (p Package) PickUp(train *Train) {
-	p.Train = train
-	train.CurrentPackages[p.PackageName] = p
-}
-
-func (p *Package) DropOff(station *Station) {
-	p.Train = nil
-	p.StartingNode = station
-	delete(p.Train.CurrentPackages, p.PackageName)
+	return fmt.Sprintf("%s %d %s %s", p.PackageName, p.WeightInKg, p.StartingNode, p.DestinationNode)
 }
 
 type Move struct {
@@ -62,5 +49,5 @@ type Move struct {
 
 func (m *Move) String() string {
 	return fmt.Sprintf("W=%d, T=%s, N1=%s, P1=%v, N2=%s, P2=%v",
-		m.When, m.Train.TrainName, m.From, m.PackagesPickedUp, m.From, m.PackagesDroppedOff)
+		m.When, m.Train.TrainName, m.From, m.PackagesPickedUp, m.To, m.PackagesDroppedOff)
 }

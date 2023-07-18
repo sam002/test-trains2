@@ -85,12 +85,12 @@ func ParseInput() (*[]trains2.Station, *[]trains2.Edge, *[]trains2.Package, *[]t
 		if sn, ok := ms[r[2]]; !ok {
 			panic("Not parse package: " + s)
 		} else {
-			packages[i].StartingNode = &sn
+			packages[i].StartingNode = sn
 		}
 		if sn, ok := ms[r[3]]; !ok {
 			panic("Not parse package: " + s)
 		} else {
-			packages[i].DestinationNode = &sn
+			packages[i].DestinationNode = sn
 		}
 	}
 	fmt.Printf("Package (%d): %v\n", numPacks, packages)

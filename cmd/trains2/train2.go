@@ -14,8 +14,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	for _, s := range *solution.GetSteps() {
-		fmt.Println(s)
+	for _, s := range solution.GetSteps() {
+		fmt.Println(s.String())
 	}
 
 	fmt.Println("END TRAINS2")
