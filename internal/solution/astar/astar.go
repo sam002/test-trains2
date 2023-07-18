@@ -2,7 +2,6 @@ package astar
 
 import (
 	"container/heap"
-	"fmt"
 	_ "gonum.org/v1/gonum/graph/iterator"
 	"trains2/internal/solution"
 	"trains2/internal/trains2"
@@ -66,8 +65,8 @@ func (s *Solution) Calculate() error {
 
 			prev := n
 			if n.prev == nil || n.prev.gm.StateID() != m.StateID() {
-				fmt.Println("add to PQ:")
-				fmt.Println(m.StateID())
+				//fmt.Println("add to PQ:")
+				//fmt.Println(m.StateID())
 				heap.Push(&possibleMoves, NewItem(Node{
 					prev: &prev,
 					gm:   m,
